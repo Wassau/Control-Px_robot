@@ -1,3 +1,8 @@
+#  The phantom robot ros practice.
+
+This repository is going to show the results and procedures of the Ros mechanics, in this way, The repository shows the commands and 
+scripts to make a correct use of the phantom x robots.
+
 
 ## ROS 
 
