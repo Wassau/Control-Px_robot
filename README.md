@@ -155,3 +155,8 @@ for i = 1:5
         pause(2)
 end
 ```
+### Conclusion
+
+This Lab has join plenty of topics about ROS, check how it works, during the development of this code was important to check the information on some important topics with the echo command. Moreover the code provided by the px_repository; the URDF files and the description of every single Link and joint. 
+
+The launcher files also were quite important, those elements had been useful, but at the same time due to poor domain it was so difficult to correct the problems in there and implement some others applications. At the end, reading just the 'px_collisions' URDF file and running the px_rviz_dyna.launch' file the issues were resolved; in fact, with the acknoledgment of the functionalities, the scripts were able to control, move and  program the phantom robot and the digital twin at the same time.
