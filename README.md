@@ -164,6 +164,9 @@ for i = 1:5
         pause(2)
 end
 ```
+In the following link you can see a video of the operation and integration between the robot and the systems.
+
+https://youtu.be/7p0sOe9Z2KQ
 ### Conclusion
 
 This Lab has join plenty of topics about ROS, check how it works, during the development of this code was important to check the information on some important topics with the echo command. Moreover the code provided by the px_repository; the URDF files and the description of every single Link and joint. 
