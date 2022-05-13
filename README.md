@@ -98,7 +98,7 @@ if __name__ == '__main__':
 #### Toolbox
 ![Pincher](https://user-images.githubusercontent.com/43300509/168179621-2b1af9be-f4fa-4307-aa42-6fe717d1df3a.svg)
 
-This part of the lab was developed in Matlab; The model and forward kinematics were made with the Peter corke toolbox; the model showed below represents the analysis of the robot with the measurements obtained of the physical robot.
+This part of the lab was developed in Matlab; The model and forward kinematics were made with the Peter corke toolbox; the model showed below represents the analysis of the robot with the measurements obtained of the physical robot. The last rotative joint ris related at the gripper.
 
 
 The DHstd parameters obtained due to this model:
