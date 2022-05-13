@@ -4,6 +4,12 @@ This repository is going to show the results and procedures of the Ros mechanics
 scripts to make a correct use of the phantom x robots.
 
 
+
+[![imagen-removebg-preview-2.png](https://i.postimg.cc/V6RvCB0k/imagen-removebg-preview-2.png)](https://postimg.cc/VrJzytFx)
+
+
+where the following parameters will be used to describe the robot, which will be of utmost importance in further analysis and processes.
+[![diagram-20220513-1.png](https://i.postimg.cc/prVMyrSw/diagram-20220513-1.png)](https://postimg.cc/WFyHHNT8)
 ## ROS 
 
 #### 
@@ -95,6 +101,9 @@ if __name__ == '__main__':
     except rospy.ROSInterruptException:
         pass
 ```
+In the following link you can see a video of the operation and integration between the robot and the systems.
+
+https://youtu.be/5HE9Gff7wt0
 #### Toolbox
 ![Pincher](https://user-images.githubusercontent.com/43300509/168179621-2b1af9be-f4fa-4307-aa42-6fe717d1df3a.svg)
 
