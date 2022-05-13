@@ -95,3 +95,63 @@ if __name__ == '__main__':
     except rospy.ROSInterruptException:
         pass
 ```
+#### Toolbox
+![Pincher](https://user-images.githubusercontent.com/43300509/168179621-2b1af9be-f4fa-4307-aa42-6fe717d1df3a.svg)
+
+This part of the lab was developed in Matlab; The model and forward kinematics were made with the Peter corke toolbox; the model showed below represents the analysis of the robot with the measurements obtained of the physical robot.
+
+
+The DHstd parameters obtained due to this model:
+![PincherDHstd](https://user-images.githubusercontent.com/43300509/168276069-649ced71-17cc-418f-860a-dc6874164650.png)
+
+The table and model were ploted by the Matlab code below. Also the tool was added, just in order to represent the gripper, the phantom has.
+```Matlab
+l1= 4.45 ;
+l2 = 10.49;
+l3 = 10.7;
+l4 = 8.41;
+q = [pi/3 -pi/4 pi/2 pi/4 pi/6 ];
+L(1) = Link('revolute','alpha', pi/2 , 'a', 0,   'd', l1 , 'offset', 0 , 'qlim', [-pi pi]);
+L(2) = Link('revolute', 'alpha' , 0 ,'a', l2 , 'd', 0 , 'offset', pi/2, 'qlim',[-pi pi]);
+L(3) = Link( 'revolute','alpha', 0 ,    'a',l3 ,   'd',0 ,   'offset', 0, 'qlim', [-pi pi]);
+L(4) = Link( 'revolute','alpha', -pi/2,    'a', 0  ,   'd',0 ,   'offset', 0, 'qlim', [-pi pi]);
+L(5) = Link( 'revolute','alpha', 0 ,    'a',l4 ,   'd',0 ,   'offset', 0 , 'qlim', [-pi pi]);
+
+TCP = trotz(-pi/2)*trotx(-pi/2);
+Pincher = SerialLink(L,'name','Pincher','tool',TCP)
+Pincher.plot( q ,'jaxes','noa');
+  
+```
+Now the next step is stablish a connection with the dynamixel_workbench, ROS topics and services. 
+
+```Matlab
+  
+motorSvcClient = rossvcclient('/dynamixel_workbench/dynamixel_command'); %Creación de cliente de pose y posición
+motorCommandMsg = rosmessage(motorSvcClient); %Creación de mensaje
+sub = rossubscriber('/dynamixel_workbench/joint_states');
+
+```
+In the last code showed, the connection was made also with a node master due to a new node that Matlab creates, moreover, with the service 'dynamixel_command', this one is able to send messages to the workbench, in order to move the  robot, control the torque and other features.
+
+Now such as the python script, the robot can be move with the address name 'Goal_Position' and send the  msg with the call() funtion, also the msg from Jointstates can be read with the receive() function ,afterwards the model can be ploted; in this way, the robot can be shown in the screen in his current position. 
+```Matlab
+
+for i = 1:5 
+    for j = 1:5
+
+        motorCommandMsg.AddrName = "Goal_Position";
+        motorCommandMsg.Id = j;
+        motorCommandMsg.Value = qs(i,j)* 3.4 + 512;
+        call(motorSvcClient,motorCommandMsg);
+        pause(1)
+    end
+        [tf,status,~] = receive(sub,10);
+    
+        if status
+            q = tf.Position;
+            Pincher.plot( q(1:5)','jaxes','noa');
+            axis([-56 58 -57 57 -57 57])
+        end
+        pause(2)
+end
+```
